@@ -76,7 +76,7 @@ module.exports = app => {
     const getByCategory = async (req, res) => {
         const categoryId = req.params.id
         const page = req.query.page || 1
-        const categories = await app.db.raw(queries.categoryWithChildren, req.params.id)
+        const categories = await app.db.raw(queries.categoryWithChildren, categoryId)
         const ids = categories.rows.map(c => c.id)
 
         app.db({a: 'articles', u: 'users'})
